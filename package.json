@@ -1,0 +1,32 @@
+{
+  "name": "evaluation_simplified",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r ts-node/register/transpile-only -r tsconfig-paths/register build/index.js",
+    "start": "npm run build && node -r ts-node/register/transpile-only -r tsconfig-paths/register build/index.js",
+    "build": "rimraf ./build && tsc",
+    "test": "jest"
+  },
+  "author": "Malik Ahsan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^28.1.8",
+    "@types/node": "^14.18.10",
+    "jest": "^29.0.1",
+    "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "@types/event-stream": "^4.0.0",
+    "@types/supertest": "^2.0.12",
+    "dotenv": "^16.0.1",
+    "event-stream": "^4.0.1",
+    "supertest": "^6.2.4",
+    "tsconfig-paths": "^4.1.0"
+  }
+}
