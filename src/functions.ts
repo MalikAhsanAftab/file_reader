@@ -1,7 +1,7 @@
-const fs = require('fs');
-const existsSync = fs.existsSync;
-const statSync = fs.statSync;
-// import { existsSync, statSync } from "fs";
+// const fs = require('fs');
+// const existsSync = fs.existsSync;
+// const statSync = fs.statSync;
+import { existsSync, statSync } from "fs";
 
 export const isJson = (str : string ) => {
     try {
