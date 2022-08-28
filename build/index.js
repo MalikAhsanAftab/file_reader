@@ -17,7 +17,7 @@ const path_1 = __importDefault(require("path"));
 global.__data_path = path_1.default.join(__dirname + '/../data/');
 const Transaction_1 = require("./models/Transaction");
 const Stock_1 = require("./models/Stock");
-const utils_1 = require("utils");
+const functions_1 = require("./functions");
 const calculateStockQuantityHelperForSmallFiles = (sku) => __awaiter(void 0, void 0, void 0, function* () {
     let qty = 0;
     // console.log("Whats in SKU request" , sku );
@@ -70,7 +70,7 @@ const calculateStockQuantityHelperForSmallFiles = (sku) => __awaiter(void 0, voi
         // console.log("Files Read Final data " , stockData  , " ::::: " , transactionDataArr); 
     }
     catch (error) {
-        console.log("An error occured while extracting information ", error);
+        //   console.log("An error occured while extracting information " , error )
     }
     return { sku, qty };
 });
@@ -113,15 +113,15 @@ const calculateStockQuantityHelperForLargeFiles = (sku) => __awaiter(void 0, voi
         qty -= transactionAcc;
     }
     catch (error) {
-        console.log("An error occured while extracting information ", error);
+        //   console.log("An error occured while extracting information " , error )
     }
     return { sku, qty };
 });
 const calculateStockQuantity = (sku) => __awaiter(void 0, void 0, void 0, function* () {
     let objToReturn = { sku, qty: 0 };
     try {
-        let stocksFileDimensions = (0, utils_1.getFilesizeInBytes)(__data_path + 'stock.json');
-        let transactionFileDimensions = (0, utils_1.getFilesizeInBytes)(__data_path + 'transactions.json');
+        let stocksFileDimensions = (0, functions_1.getFilesizeInBytes)(__data_path + 'stock.json');
+        let transactionFileDimensions = (0, functions_1.getFilesizeInBytes)(__data_path + 'transactions.json');
         //Check if one of the files exceed the one GB criterion
         let oneGB = 1024 * 1024 * 1024;
         let filesAreLarge = (stocksFileDimensions > oneGB) || (transactionFileDimensions > oneGB);
@@ -133,7 +133,7 @@ const calculateStockQuantity = (sku) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (error) {
-        console.log("An error occured ", error);
+        // console.log("An error occured " , error )
     }
     return objToReturn;
 });

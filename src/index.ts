@@ -2,7 +2,7 @@ import path from 'path'
 global.__data_path = path.join(__dirname+'/../data/');
 import { getTransactionsFromLargeFile , allTransactions  , Transaction } from './models/Transaction';
 import { getStockFromLargeFile , allStocks , createStockHashMap } from './models/Stock';
-import { getFilesizeInBytes } from 'utils';
+import { getFilesizeInBytes } from './functions';
 
 const calculateStockQuantityHelperForSmallFiles = async (sku: string) : Promise<{ sku: string, qty: number }> => {
   let qty = 0;
@@ -68,7 +68,7 @@ const calculateStockQuantityHelperForSmallFiles = async (sku: string) : Promise<
 
       // console.log("Files Read Final data " , stockData  , " ::::: " , transactionDataArr); 
   }catch(error){
-      console.log("An error occured while extracting information " , error )
+    //   console.log("An error occured while extracting information " , error )
   } 
   return {sku  , qty };
 }
@@ -120,7 +120,7 @@ const calculateStockQuantityHelperForLargeFiles = async (sku: string) : Promise<
       
       qty -= transactionAcc;    
   }catch(error){
-      console.log("An error occured while extracting information " , error )
+    //   console.log("An error occured while extracting information " , error )
   } 
   return {sku  , qty };
 }
@@ -140,7 +140,7 @@ export const calculateStockQuantity = async (sku : string )=>{
             return calculateStockQuantityHelperForSmallFiles(sku);
         }
     }catch(error){
-        console.log("An error occured " , error )
+        // console.log("An error occured " , error )
     }
     return objToReturn;
 }

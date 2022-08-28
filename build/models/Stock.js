@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createStockHashMap = exports.allStocks = exports.getStockFromLargeFile = void 0;
 const fs_1 = require("fs");
 const event_stream_1 = require("event-stream");
-const utils_1 = require("utils");
+const functions_1 = require("./../functions");
 const stockFilePath = __data_path + 'stock.json';
 const getStockFromLargeFile = (sku) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -27,14 +27,14 @@ const getStockFromLargeFile = (sku) => __awaiter(void 0, void 0, void 0, functio
                     resolve(~~stock);
                 }
             })).on("error", function (err) {
-                console.log("An error occured ", err);
+                // console.log("An error occured " , err )
             }).on("end", function () {
-                console.log("EOF");
+                // console.log("EOF");
             });
         });
     }
     catch (error) {
-        console.log("An error occured while reading file in chunks ", error);
+        // console.log("An error occured while reading file in chunks " , error )
     }
     return 0;
 });
@@ -44,10 +44,10 @@ const allStocks = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = (0, fs_1.readFileSync)(stockFilePath, { encoding: 'utf8' });
         //Trying to parse if possible
-        return ((0, utils_1.isJson)(data) || []);
+        return ((0, functions_1.isJson)(data) || []);
     }
     catch (err) {
-        console.log("Error occurred in Stock Model :", err);
+        // console.log("Error occurred in Stock Model :" , err);
     }
     return [];
 });

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.allTransactions = exports.getTransactionsFromLargeFile = void 0;
 const fs_1 = require("fs");
 const event_stream_1 = require("event-stream");
-const utils_1 = require("utils");
+const functions_1 = require("./../functions");
 const transactionsFilePath = __data_path + 'transactions.json';
 const getTransactionsFromLargeFile = (sku) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -27,15 +27,15 @@ const getTransactionsFromLargeFile = (sku) => __awaiter(void 0, void 0, void 0, 
                     arr.push({ sku, type, qty });
                 }
             })).on("error", function (err) {
-                console.log("An error occured ", err);
+                // console.log("An error occured " , err )
             }).on("end", function () {
-                console.log("EOF ");
+                // console.log("EOF " );
                 resolve(arr);
             });
         });
     }
     catch (error) {
-        console.log("An error occured while reading file in chunks ", error);
+        // console.log("An error occured while reading file in chunks " , error )
     }
     return [];
 });
@@ -45,10 +45,10 @@ const allTransactions = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = (0, fs_1.readFileSync)(transactionsFilePath, { encoding: 'utf8' });
         //Trying to parse if possible
-        return ((0, utils_1.isJson)(data) || []);
+        return ((0, functions_1.isJson)(data) || []);
     }
     catch (err) {
-        console.log("Error occurred in Transaction Model :", err);
+        // console.log("Error occurred in Transaction Model :" , err);
     }
     return [];
 });

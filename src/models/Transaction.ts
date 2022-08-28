@@ -1,6 +1,6 @@
 import { createReadStream, readFileSync  } from "fs";
 import { split , mapSync } from "event-stream";
-import { isJson } from 'utils';
+import { isJson } from './../functions';
 
 const transactionsFilePath : string = __data_path+'transactions.json';
 
@@ -24,15 +24,15 @@ export const getTransactionsFromLargeFile = async (sku : string ) : Promise<Arra
                         arr.push({ sku , type , qty })
                     }
                 })).on("error" , function (err){
-                    console.log("An error occured " , err )
+                    // console.log("An error occured " , err )
                 }).on("end" , function(){
-                    console.log("EOF " );
+                    // console.log("EOF " );
                     resolve(arr)
                 })
 
         })
     }catch(error){
-        console.log("An error occured while reading file in chunks " , error )
+        // console.log("An error occured while reading file in chunks " , error )
     }
     return [];
 }
@@ -44,7 +44,7 @@ export const allTransactions = async () : Promise<Array<Transaction>> => {
         //Trying to parse if possible
         return (isJson(data) || []);
     } catch (err) {
-        console.log("Error occurred in Transaction Model :" , err);
+        // console.log("Error occurred in Transaction Model :" , err);
     }
     return [];
 }
