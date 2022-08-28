@@ -1,1 +1,1 @@
-# Project for evalueation of Node JS using TS
+# Project for evaluation of Node JS using TS
